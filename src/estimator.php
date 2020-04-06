@@ -49,6 +49,7 @@ function covid19ImpactEstimator($data)
   //     "dollarsInFlight" => 351522269429760
   //   ]   // your severe case estimation
   // ];
+
   $data = [
     "impact" => [
       "currentlyInfected" => 17160,
