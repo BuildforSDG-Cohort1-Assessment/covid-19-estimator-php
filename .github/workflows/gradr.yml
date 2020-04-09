@@ -7,189 +7,189 @@ on:
 
 jobs:
 
-  # lint:
-  #   name: audit code style
-  #   runs-on: ubuntu-latest
+  lint:
+    name: audit code style
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #       operating-system: [ubuntu-18.04]
-  #       php: [7.3.15]
+    strategy:
+      matrix:
+        node-version: [12.x]
+        operating-system: [ubuntu-18.04]
+        php: [7.3.15]
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-  #     - name: Prepare To Install
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - name: Prepare To Install
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: Install Deps
-  #       run: |
-  #         yarn install
-  #         yarn add phplint
+      - name: Install Deps
+        run: |
+          yarn install
+          yarn add phplint
 
-  #     - name: Run Audits
-  #       run: yarn phplint './src/**/*.php'
+      - name: Run Audits
+        run: yarn phplint './src/**/*.php'
   
-  # ch-1:
-  #   needs: lint
-  #   name: audit challenge 1
-  #   runs-on: ubuntu-latest
+  ch-1:
+    needs: lint
+    name: audit challenge 1
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #       operating-system: [ubuntu-18.04]
-  #       php: [7.3.15]
+    strategy:
+      matrix:
+        node-version: [12.x]
+        operating-system: [ubuntu-18.04]
+        php: [7.3.15]
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-  #     - name: Prepare To Install
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - name: Prepare To Install
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: Install JS Deps
-  #       run: |
-  #         yarn install
-  #         yarn add xml2json axios @actions/core @actions/github
+      - name: Install JS Deps
+        run: |
+          yarn install
+          yarn add xml2json axios @actions/core @actions/github
 
-  #     - name: Setup PHP Environment
-  #       uses: shivammathur/setup-php@v1
-  #       with:
-  #         php-version: ${{ matrix.php }}
+      - name: Setup PHP Environment
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
 
-  #     - name: Install PHPunit
-  #       run: |
-  #         composer require --dev phpunit/phpunit
-  #         composer require guzzlehttp/guzzle:~6.0
+      - name: Install PHPunit
+        run: |
+          composer require --dev phpunit/phpunit
+          composer require guzzlehttp/guzzle:~6.0
 
-  #     - name: Prepare Audits
-  #       uses: actions/checkout@v2
-  #       with:
-  #         repository: BuildforSDG-Cohort1-Assessment/covid-19-estimator-audits-php
-  #         path: audits
+      - name: Prepare Audits
+        uses: actions/checkout@v2
+        with:
+          repository: BuildforSDG-Cohort1-Assessment/covid-19-estimator-audits-php
+          path: audits
 
-  #     - name: Run Audits
-  #       run: |
-  #         vendor/bin/phpunit ./audits/ch-1 --testdox --log-junit audits/ch-1.xml
+      - name: Run Audits
+        run: |
+          vendor/bin/phpunit ./audits/ch-1 --testdox --log-junit audits/ch-1.xml
 
-  #     - name: Report Audits
-  #       uses: ./.github/actions/jest-out
-  #       with:
-  #         challenge: ch-1
-  #         lang: php
-  #       if: always()
+      - name: Report Audits
+        uses: ./.github/actions/jest-out
+        with:
+          challenge: ch-1
+          lang: php
+        if: always()
 
-  # ch-2:
-  #   needs: ch-1
-  #   name: audit challenge 2
-  #   runs-on: ubuntu-latest
+  ch-2:
+    needs: ch-1
+    name: audit challenge 2
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #       operating-system: [ubuntu-18.04]
-  #       php: [7.3.15]
+    strategy:
+      matrix:
+        node-version: [12.x]
+        operating-system: [ubuntu-18.04]
+        php: [7.3.15]
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-  #     - name: Prepare To Install
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - name: Prepare To Install
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: Install JS Deps
-  #       run: |
-  #         yarn install
-  #         yarn add xml2json axios @actions/core @actions/github
+      - name: Install JS Deps
+        run: |
+          yarn install
+          yarn add xml2json axios @actions/core @actions/github
 
-  #     - name: Setup PHP Environment
-  #       uses: shivammathur/setup-php@v1
-  #       with:
-  #         php-version: ${{ matrix.php }}
+      - name: Setup PHP Environment
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
 
-  #     - name: Install PHPunit
-  #       run: |
-  #         composer require --dev phpunit/phpunit
-  #         composer require guzzlehttp/guzzle:~6.0
+      - name: Install PHPunit
+        run: |
+          composer require --dev phpunit/phpunit
+          composer require guzzlehttp/guzzle:~6.0
 
-  #     - name: Prepare Audits
-  #       uses: actions/checkout@v2
-  #       with:
-  #         repository: BuildforSDG-Cohort1-Assessment/covid-19-estimator-audits-php
-  #         path: audits
+      - name: Prepare Audits
+        uses: actions/checkout@v2
+        with:
+          repository: BuildforSDG-Cohort1-Assessment/covid-19-estimator-audits-php
+          path: audits
 
-  #     - name: Run Audits
-  #       run: vendor/bin/phpunit ./audits/ch-2 --testdox --log-junit audits/ch-2.xml
+      - name: Run Audits
+        run: vendor/bin/phpunit ./audits/ch-2 --testdox --log-junit audits/ch-2.xml
 
-  #     - name: Report Audits
-  #       uses: ./.github/actions/jest-out
-  #       with:
-  #         challenge: ch-2
-  #         lang: php
-  #       if: always()
+      - name: Report Audits
+        uses: ./.github/actions/jest-out
+        with:
+          challenge: ch-2
+          lang: php
+        if: always()
 
-  # ch-3:
-  #   needs: ch-2
-  #   name: audit challenge 3
-  #   runs-on: ubuntu-latest
+  ch-3:
+    needs: ch-2
+    name: audit challenge 3
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #       operating-system: [ubuntu-18.04]
-  #       php: [7.3.15]
+    strategy:
+      matrix:
+        node-version: [12.x]
+        operating-system: [ubuntu-18.04]
+        php: [7.3.15]
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-  #     - name: Prepare To Install
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
+      - name: Prepare To Install
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  #     - name: Install JS Deps
-  #       run: |
-  #         yarn install
-  #         yarn add xml2json axios @actions/core @actions/github
+      - name: Install JS Deps
+        run: |
+          yarn install
+          yarn add xml2json axios @actions/core @actions/github
 
-  #     - name: Setup PHP Environment
-  #       uses: shivammathur/setup-php@v1
-  #       with:
-  #         php-version: ${{ matrix.php }}
+      - name: Setup PHP Environment
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
 
-  #     - name: Install PHPunit
-  #       run: |
-  #         composer require --dev phpunit/phpunit
-  #         composer require guzzlehttp/guzzle:~6.0
+      - name: Install PHPunit
+        run: |
+          composer require --dev phpunit/phpunit
+          composer require guzzlehttp/guzzle:~6.0
 
-  #     - name: Prepare Audits
-  #       uses: actions/checkout@v2
-  #       with:
-  #         repository: BuildforSDG-Cohort1-Assessment/covid-19-estimator-audits-php
-  #         path: audits
+      - name: Prepare Audits
+        uses: actions/checkout@v2
+        with:
+          repository: BuildforSDG-Cohort1-Assessment/covid-19-estimator-audits-php
+          path: audits
 
-  #     - name: Run Audits
-  #       run: vendor/bin/phpunit ./audits/ch-3 --testdox --log-junit audits/ch-3.xml
+      - name: Run Audits
+        run: vendor/bin/phpunit ./audits/ch-3 --testdox --log-junit audits/ch-3.xml
 
-  #     - name: Report Audits
-  #       uses: ./.github/actions/jest-out
-  #       with:
-  #         challenge: ch-3
-  #         lang: php
-  #       if: always()
+      - name: Report Audits
+        uses: ./.github/actions/jest-out
+        with:
+          challenge: ch-3
+          lang: php
+        if: always()
 
   lighthouse:
-    # needs: ch-3
+    needs: ch-3
     name: audit frontend app (lighthouse)
     runs-on: ubuntu-latest
 
@@ -229,7 +229,7 @@ jobs:
       if: always()
   
   ch-4:
-    # needs: lighthouse
+    needs: lighthouse
     name: audit frontend UI
     runs-on: ubuntu-latest
 
@@ -266,7 +266,7 @@ jobs:
       if: always()
 
   ch-5:
-    # needs: ch-3
+    needs: ch-3
     name: audit backend API
     runs-on: ubuntu-latest
 
